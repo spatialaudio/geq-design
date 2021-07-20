@@ -32,7 +32,7 @@ def model_builder(hp):
   
   # Tune the learning rate for the optimizer
   # Choose an optimal value from ,0.01, 0.001, or 0.0001
-  hp_learning_rate = hp.Choice('learning_rate', values=[1e-3, 1e-4,1e-5])
+  hp_learning_rate = hp.Choice('learning_rate', values=[1e-2, 1e-3, 1e-4,1e-5])
 
   model.compile(optimizer=keras.optimizers.Adam(learning_rate=hp_learning_rate),
                 loss=tf.keras.losses.MeanSquaredError(),

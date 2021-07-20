@@ -1,3 +1,18 @@
+"""
+Function for creating a neural network
+
+    Parameters
+    ----------
+        
+    Returns
+    -------
+
+    returns keras sequential model
+
+    Notes
+    -----
+    save the created model 
+"""
 import tensorflow as tf
 
 def create_model() :

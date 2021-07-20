@@ -4,6 +4,7 @@ import datetime
 import time
 from sklearn.preprocessing import MinMaxScaler
 
+from groupData import groupData
 
 #GetData
 #only for test
@@ -14,8 +15,8 @@ InputDataSmall = np.loadtxt("data/trainValid/dataInputSmall.csv",delimiter=",")
 OutputDataSmall = np.loadtxt ("data/trainValid/dataOutputSmall.csv", delimiter=",")
 InputDataMid = np.loadtxt("data/trainValid/dataInputMid.csv",delimiter=",")
 OutputDataMid = np.loadtxt ("data/trainValid/dataOutputMid.csv", delimiter=",")
-InputDataLarge = np.loadtxt("data/trainValid/dataInput.csv",delimiter=",")
-OutputDataLarge = np.loadtxt ("data/trainValid/dataOutput.csv", delimiter=",")
+InputDataLarge = np.loadtxt("data/trainValid/dataInputTrain.csv",delimiter=",")
+OutputDataLarge = np.loadtxt ("data/trainValid/dataOutputTrain.csv", delimiter=",")
 
 
 #TransformData
@@ -30,51 +31,38 @@ InputDataM_transformed = scaler.fit_transform(InputDataMid)
 OutputDataM_transformed = scaler.fit_transform(OutputDataMid)
 InputDataL_transformed = scaler.fit_transform(InputDataLarge)
 OutputDataL_transformed = scaler.fit_transform(OutputDataLarge)
- 
+
 
 #GroupData
-def groupData(inputData,outputData,val_split):
-    inputDataTrain = inputData[0:round(inputData.shape[0]*val_split)]
-    inputDataValid  = inputData[round(inputData.shape[0]*val_split):inputData.shape[0]]
-    outputDataTrain = outputData[0:round(outputData.shape[0]*val_split)]
-    outputDataValid  = outputData[round(outputData.shape[0]*val_split):outputData.shape[0]]
-    
-    return inputDataTrain,inputDataValid,outputDataTrain,outputDataValid
-
-val_split = 0.8
-#InputDataTrainS,InputDataValidS,OutputDataTrainS,OutputDataValidS = groupData(InputDataS_transformed,OutputDataS_transformed,val_split)
-#InputDataTrainM,InputDataValidM,OutputDataTrainM,OutputDataValidM = groupData(InputDataM_transformed,OutputDataM_transformed,val_split)
+val_split = 0.2
+InputDataTrainS,InputDataValidS,OutputDataTrainS,OutputDataValidS = groupData(InputDataS_transformed,OutputDataS_transformed,val_split)
+InputDataTrainM,InputDataValidM,OutputDataTrainM,OutputDataValidM = groupData(InputDataM_transformed,OutputDataM_transformed,val_split)
 InputDataTrainL,InputDataValidL,OutputDataTrainL,OutputDataValidL = groupData(InputDataL_transformed,OutputDataL_transformed,val_split)
 
 #for Tensorboard
-InputDataTrainS = InputDataS_transformed[0:800]
-InputDataValidS = InputDataS_transformed[800:1000]
-OutputDataTrainS = OutputDataS_transformed[0:800]
-OutputDataValidS = OutputDataS_transformed[800:1000]
+#InputDataTrainS1000 = InputDataS_transformed[0:800]
+#InputDataValidS1000 = InputDataS_transformed[800:1000]
+#OutputDataTrainS1000 = OutputDataS_transformed[0:800]
+#OutputDataValidS1000 = OutputDataS_transformed[800:1000]
 
 
 #chooseModel
-
-#modelName = "model"
-#modelName="modelLarge"
-#modelName="new/ModelSmall"
-#modelName="new/ModelLarge"
-#modelName="modelOne"
-modelName="modelTwo"
+#modelName="kerasTunerModels/modelOne"
+modelName="kerasTunerModels/modelTwo"
 
 #loadModel
-model = tf.keras.models.load_model("models/kerasTunerModels/"+modelName)
+model = tf.keras.models.load_model("models/"+modelName)
 
 #compileModel
 model.compile(
-    optimizer='adam',
+    optimizer=tf.keras.optimizers.Adam(learning_rate=0.0001),
     loss=tf.keras.losses.MeanSquaredError(),
     metrics=['accuracy'])
 
 
-log_dir = "logs/fit/" + modelName + "EP50BS100DS1000" #+ datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+log_dir = "logs/fit/" + modelName + "08TrainValid" #+ datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
-es = tf.keras.callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=2, patience=50)
+es = tf.keras.callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=2, patience=25)
 
 #trainModel
 def modelFit(epochs,bs,x,y,x_val,y_val):
@@ -83,22 +71,20 @@ def modelFit(epochs,bs,x,y,x_val,y_val):
           epochs=epochs,
           batch_size = bs,
           validation_data=(x_val, y_val), 
-          verbose = 1,
-        #  callbacks=[tensorboard_callback] #,es,tensorboard_callback]
+          verbose = 0,
+          callbacks=[es] #[tensorboard_callback] 
          )
     results = model.evaluate(x_val,y_val)
-    print("Test loss, Test accuracy:", results)
+    print("Val loss, Val accuracy:", results)
 
-modelFit(50,100,InputDataTrainS,OutputDataTrainS,InputDataValidS,OutputDataValidS)
 
-#modelFit(50,5000,InputDataTrainM,OutputDataTrainM,InputDataValidM,OutputDataValidM)
+#modelFit(200,1000,InputDataTrainS,OutputDataTrainS,InputDataValidS,OutputDataValidS)
+#modelFit(200,1000,InputDataTrainM,OutputDataTrainM,InputDataValidM,OutputDataValidM)
 
-#modelFit(200,1000,InputDataTrainS,OutputDataTrainS,InputDataTestS,OutputDataTestS)
-#modelFit(500,2000,InputDataTrainS,OutputDataTrainS,InputDataTestS,OutputDataTestS)
-#modelFit(200,1000,InputDataTrainM,OutputDataTrainM,InputDataTestM,OutputDataTestM)
-#modelFit(200,2000,InputDataTrainM,OutputDataTrainM,InputDataValidM,OutputDataValidM)
-#modelFit(200,2000,InputDataTrainL,OutputDataTrainL,InputDataTestL,OutputDataTestL)
-#modelFit(500,5000,InputDataTrainL,OutputDataTrainL,InputDataTestL,OutputDataTestL)
+modelFit(200,20000,InputDataTrainL,OutputDataTrainL,InputDataValidL,OutputDataValidL)
+
+results = model.evaluate(InputData_transformed,OutputData_transformed)
+print("Test loss, Test accuracy:", results)
 
 #saveModel
 #model.save("Models/"+modelName)
