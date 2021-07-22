@@ -7,7 +7,7 @@ from pareq import pareq
 from initGEQ import initGEQ
 from plotPrediction import plotPredictions
 from plotAbsoluteError import plotAbsoluteError
-
+from plotGEQ import plot
 
 #chooseModel
 #modelName = "modelLarge"
@@ -51,7 +51,9 @@ def thirdOctaveGEQwithPredictions(commandGains,filterGainsPrediction):
     filterGains = filterGainsPrediction
     [numsopt,densopt,fs,fc2,G_db2,G2opt_db,fc1,bw] = initGEQ(G_db.reshape(31,1))
     fig_predict = plotPredictions(filterGains,G_db,fs,fc2,fc1,bw,G2opt_db, numsopt,densopt)
+    fig_calc = plot(numsopt,densopt,fs,fc2,G_db2,G2opt_db,fc1)
     fig_error = plotAbsoluteError(numsopt,densopt,fs,G_db,fc1,input)
+    
     plt.show()
     
     return

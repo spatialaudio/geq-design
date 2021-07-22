@@ -4,7 +4,7 @@ from initGEQ import initGEQ
 from getErrors import getErrors
 
 def createOutputData():
-    dataInput = np.loadtxt('dataInputTestNew.csv', delimiter=',')
+    dataInput = np.loadtxt('data/test/dataInputTest.csv', delimiter=',')
     dataOutput = np.zeros((len(dataInput),31))
     dataError = np.zeros((len(dataInput),3))
     dataErrorAbsolute = np.zeros((len(dataInput),31))
