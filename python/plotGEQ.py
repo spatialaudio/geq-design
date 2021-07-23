@@ -9,14 +9,18 @@ Evaluate and plot
         denominator coefficients for each filter
     fs : float
         sample frequency
+    fc1 : ndarray
+        center frequences
     fc2 : ndarray
         center frequencies and additional design points between them
     G_db2 : ndarray
         interpolate target gains linearly b/w command gains
+    G2opt_db: ndarray
+        optimzed filter gains
         
     Returns
     -------
-    
+    frequency response of GEQ as figure
     Notes
     -----
     Python reference to Liski, J.; Välimäki, V. The quest for the best graphic equalizer. In Proceedings of the International Conference

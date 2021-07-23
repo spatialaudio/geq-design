@@ -1,7 +1,28 @@
+"""
+Evaluate and plot absolute Error
+
+    Parameters
+    ----------
+    fc1 : ndarray
+        center frequences
+    input: int
+        integer for i-th setting in datasets
+    
+        
+    Returns
+    -------
+    absolute Error of GEQ and NGEQ as a figure
+    
+    Notes
+    -----
+    
+"""
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plotAbsoluteError(numsopt,densopt,fs,G_db,fc1,input):
+def plotAbsoluteError(fc1,input):
     
     
     w = fc1

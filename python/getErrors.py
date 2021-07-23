@@ -1,3 +1,33 @@
+"""
+Function for creating different erros of a given command gain configuration
+
+    Parameters
+    ----------
+    numsopt : ndarray
+        numerator parts of the 31 filters
+    densopt : ndarray
+        denominator parts of the 31 filters
+    fs : float
+        sample frequency
+    G_db : ndarray
+        command gains in dB
+    fc1 : ndarray
+        center frequencies
+
+    Returns
+    -------
+    MSE : float
+        mean squared error of command gain configuration
+    RMSE : float
+        root mean squared error of command gain configuration
+    MAE : float
+        mean absolute error of command gain configuration
+    errorabsolute: ndarray 
+        absolute errors in dB of GEQ   
+    Notes
+    -----
+"""
+
 import numpy as np
 import sklearn.metrics as skmetrics
 from scipy import signal

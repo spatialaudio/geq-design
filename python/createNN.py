@@ -3,7 +3,8 @@ Function for creating a neural network
 
     Parameters
     ----------
-        
+    modelName : string
+        name of the created model   
     Returns
     -------
 
@@ -11,9 +12,11 @@ Function for creating a neural network
 
     Notes
     -----
-    save the created model 
+    saves the created model with it's name
 """
 import tensorflow as tf
+
+modelName = "ModelSmall"
 
 def create_model() :
     return tf.keras.models.Sequential([
@@ -22,7 +25,6 @@ def create_model() :
       tf.keras.layers.Dense(31,activation="linear"),
     ])
 
-modelName = "ModelSmall"
 
 model = create_model()
 

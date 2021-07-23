@@ -1,3 +1,23 @@
+"""
+train a model
+
+    Parameters
+    ----------
+    modelName: string
+        model what is to be trained 
+    val_split: float
+        select how large the validation data portion is    
+        
+    Returns
+    -------
+    trained model 
+
+    Notes
+    -----
+    if the trained model is to be saved, comment out the last line
+"""
+
+
 import numpy as np
 import tensorflow as tf
 import datetime
@@ -84,7 +104,7 @@ def modelFit(epochs,bs,x,y,x_val,y_val):
 modelFit(200,20000,InputDataTrainL,OutputDataTrainL,InputDataValidL,OutputDataValidL)
 
 results = model.evaluate(InputData_transformed,OutputData_transformed)
-print("Test loss, Test accuracy:", results)
+print("Train loss, Train accuracy:", results)
 
 #saveModel
 #model.save("Models/"+modelName)

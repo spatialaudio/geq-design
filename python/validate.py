@@ -1,8 +1,30 @@
+"""
+validate a trained model
+
+    Parameters
+    ----------
+    modelName: string
+        model what is to be validated 
+        
+    Returns
+    -------
+    evaluation of model on training data, valdiation data and test data
+    
+    Notes
+    -----
+"""
+
+
+
 import numpy as np
 import tensorflow as tf
 from sklearn.preprocessing import MinMaxScaler
 
 from groupData import groupData
+
+#chooseModel
+#modelName="kerasTunerModels/modelOne"
+modelName="kerasTunerModels/modelTwo"
 
 #train and validData
 InputDataLarge = np.loadtxt("data/trainValid/dataInputTrain.csv",delimiter=",")
@@ -24,13 +46,8 @@ OutputDataL_transformed = scaler.fit_transform(OutputDataLarge)
 val_split = 0.2
 InputDataTrainL,InputDataValidL,OutputDataTrainL,OutputDataValidL = groupData(InputDataL_transformed,OutputDataL_transformed,val_split)
 
-#chooseModel
-modelName="modelOne"
-
-#modelName="modelTwo"
-
 #loadModel
-model = tf.keras.models.load_model("models/kerasTunerModels/"+modelName)
+model = tf.keras.models.load_model("models/"+modelName)
 
 print("Evaluation of the model" + modelName)
 

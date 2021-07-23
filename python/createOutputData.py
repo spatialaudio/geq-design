@@ -1,3 +1,16 @@
+"""
+Function for creating and saving output data
+
+    Parameters
+    ----------
+       
+    Returns
+    -------
+
+    Notes
+    -----
+    uncomment last line to create output data
+"""
 import numpy as np
 
 from initGEQ import initGEQ

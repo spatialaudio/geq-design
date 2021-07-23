@@ -1,3 +1,19 @@
+"""
+get different errors of a explicit dataset
+
+    Parameters
+    ----------
+    dataName: string
+        data set whose error is to be evaluated 
+        
+    Returns
+    -------
+    different Erros (MSE,MAE,AE) of a given dataset
+    Notes
+    -----
+    
+"""
+
 import numpy as np
 
 dataNamePredict = "prediction/predictionErrorTest"

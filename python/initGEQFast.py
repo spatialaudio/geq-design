@@ -1,3 +1,31 @@
+"""
+Function for initializing the graphic Equalizer
+
+    Parameters
+    ----------
+    G_db : ndarray 31x1
+        Command gains in dB
+        
+    Returns
+    -------
+    numsopt : ndarray
+        numerator parts of the 31 filters
+    densopt : ndarray
+        denominator parts of the 31 filters
+    fs : float
+        sample frequency
+    fc2 : ndarray
+        center frequencies and additional design points between them
+    G_db2 : ndarray
+        interpolate target gains linearly b/w command gains
+        
+    Notes
+    -----
+    Python reference to Liski, J.; Välimäki, V. The quest for the best graphic equalizer. In Proceedings of the International Conference
+    on Digital Audio Effects (DAFx-17), Edinburgh, UK, 5–9 September 2017; pp. 95–102
+
+"""
+
 import numpy as np
 
 from pareq import pareq

@@ -1,4 +1,22 @@
+"""
+Function for creating command gain input data set
+
+    Parameters
+    ----------
+    dataName: string
+        name for the created input data 
+
+    Returns
+    -------
+
+    Notes
+    -----
+    saves the input data in same folder as a .csv 
+"""
+
 import numpy as np
+
+dataName = "dataInputTestNew.csv"
 
 def createInputData():
     
@@ -27,4 +45,4 @@ def createInputData():
 # define data
 data = np.asarray(createInputData(), dtype=np.float64,)
 # save to csv file
-np.savetxt('dataInputTestNew.csv', data, delimiter=',')
+np.savetxt(dataName, data, delimiter=',')

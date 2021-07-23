@@ -1,3 +1,17 @@
+"""
+Function for creating the error of prediced saved output
+
+    Parameters
+    ----------
+       
+    Returns
+    -------
+
+    Notes
+    -----
+    uncomment last line to create prediction error
+"""
+
 import math
 import numpy as np
 
