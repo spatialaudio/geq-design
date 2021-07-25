@@ -17,13 +17,16 @@ calculate
 
 
 import numpy as np
+import matplotlib.pyplot as plt
 from initGEQ import initGEQ
+from functions.plotGEQ import plot
 
 def thirdOctaveGEQ(commandGains):
     
     G_db = commandGains.reshape((31,1))
     [numsopt,densopt,fs,fc2,G_db2,G2opt_db,fc1,bw] = initGEQ(G_db) 
-    print(G2opt_db.reshape(1,31))
+    fig_calc = plot(numsopt,densopt,fs,fc2,G_db2,G2opt_db,fc1)
+    plt.show()
     
     return 
 

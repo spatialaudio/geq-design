@@ -30,7 +30,7 @@ Compute the interaction matrix of a cascade GEQ
 import numpy as np
 from scipy import signal 
 
-from pareq import pareq
+from functions.pareq import pareq
 
 def interactionMatrix(G,c,wg,wc,bw):
 

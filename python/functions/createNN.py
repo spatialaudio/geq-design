@@ -16,7 +16,7 @@ Function for creating a neural network
 """
 import tensorflow as tf
 
-modelName = "ModelSmall"
+modelName = "ModelSmall123"
 
 def create_model() :
     return tf.keras.models.Sequential([

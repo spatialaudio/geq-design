@@ -20,7 +20,7 @@ import numpy as np
 import tensorflow as tf
 from sklearn.preprocessing import MinMaxScaler
 
-from groupData import groupData
+from functions.groupData import groupData
 
 #chooseModel
 #modelName="kerasTunerModels/modelOne"

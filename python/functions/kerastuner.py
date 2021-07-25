@@ -1,11 +1,29 @@
+"""
+search for the best neural network model
+
+    Parameters
+    ----------
+    modelName: string
+        model what is to be searched and saved 
+
+    Returns
+    -------
+    saves the searched model as tensforflow sequential model
+        
+    Notes
+    -----
+"""
+
 import tensorflow as tf
 from tensorflow import keras
 import keras_tuner as kt
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 
-InputData = np.loadtxt("Data/new/dataInputSmall.csv",delimiter=",")
-OutputData = np.loadtxt ("Data/new/dataOutputSmall.csv", delimiter=",")
+modelName ="modelNew"
+
+InputData = np.loadtxt("Data/trainValid/dataInputSmall.csv",delimiter=",")
+OutputData = np.loadtxt ("Data/trainValid/dataOutputSmall.csv", delimiter=",")
 
 scaler = MinMaxScaler(feature_range=(0, 1))
 
@@ -76,5 +94,5 @@ print("[test loss, test accuracy]:", eval_result)
 
 hypermodel.summary()
 
-hypermodel.save("Models/kerasTunerModels/modelTwo")
+hypermodel.save("Models/kerasTunerModels/"+modelName)
 

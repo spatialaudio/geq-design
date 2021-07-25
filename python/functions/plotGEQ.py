@@ -54,7 +54,7 @@ def plot(numsopt,densopt,fs,fc2,G_db2,G2opt_db,fc1):
     plt.plot(fc1,G2opt_db, "ro", markersize=4, markerfacecolor="none",marker="x")
     plt.ylabel("Pegel in dB")
     plt.xlabel("Frequenz in Hz")
-    #plt.title("Optimized frequency response")
+    plt.title("Optimized frequency response")
     plt.xticks([10, 30, 100, 1000, 3000, 10000])
     plt.yticks(np.arange(0,15,5))
     plt.grid(which="both", linestyle="--", color="grey")

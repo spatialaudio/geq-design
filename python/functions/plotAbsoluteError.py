@@ -43,7 +43,7 @@ def plotAbsoluteError(fc1,input):
     plt.semilogx(w,errorAbsPred, color="orange") #predicted
     plt.ylabel("Fehler in dB")
     plt.xlabel("Frequenz in Hz")
-    #plt.title("Absolute Error")
+    plt.title("Absolute Error")
     plt.xticks([10, 30, 100, 1000, 3000, 10000])
     plt.yticks(np.arange(0,1.2,0.2))
     plt.grid(which="both", linestyle="--", color="grey")

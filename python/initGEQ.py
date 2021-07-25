@@ -34,9 +34,9 @@ import sklearn.metrics as skmetrics
 import scipy.io
 import time
 
-from pareq import pareq
-from pareqVectorized import pareqVectorized
-from interactionMatrix import interactionMatrix
+from functions.pareq import pareq
+from functions.pareqVectorized import pareqVectorized
+from functions.interactionMatrix import interactionMatrix
 
 def initGEQ(G_db):
     fs = 44.1e3

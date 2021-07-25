@@ -7,10 +7,9 @@ import time
 import tensorflow as tf
 from sklearn.preprocessing import MinMaxScaler
 
-from pareq import pareq
-from pareqVectorized import pareqVectorized
-from interactionMatrix import interactionMatrix
-from optimizedFilterGains import optimizedFilterGains
+from functions.pareq import pareq
+from functions.pareqVectorized import pareqVectorized
+from functions.interactionMatrix import interactionMatrix
 from initGEQFast import initGEQFast
 
 modelName = "kerasTunerModels/modelTwo"
@@ -117,12 +116,12 @@ def timePrediction():
         G2wopt_db = 0.38 * G2opt_db
         G2wopt = 10 **(G2wopt_db/20)
     
-        for k in range(31):
-            [num,den] = pareq(G2opt[k],G2wopt[k],wg[k],bw[k])
-            numsoptPred[:,k] = num
-            densoptPred[:,k] = den
+        # for k in range(31):
+        #     [num,den] = pareq(G2opt[k],G2wopt[k],wg[k],bw[k])
+        #     numsoptPred[:,k] = num
+        #     densoptPred[:,k] = den
         
-        #numsoptPred, densoptPred = pareqVectorized(G2opt.reshape(31),G2wopt.reshape(31),wg,bw)
+        numsoptPred, densoptPred = pareqVectorized(G2opt.reshape(31),G2wopt.reshape(31),wg,bw)
 
     tok = time.time()
 

@@ -4,7 +4,7 @@ import math
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 
-from pareq import pareq
+from functions.pareq import pareq
 
 def plotPredictions(filtergainsPrediction,G_db,fs,fc2,fc1,bw,G2opt_db,numsopt,densopt):
     
@@ -57,7 +57,7 @@ def plotPredictions(filtergainsPrediction,G_db,fs,fc2,fc1,bw,G2opt_db,numsopt,de
     plt.plot(fc1,G2opt_db, "ro", markersize=6, markerfacecolor="none", marker="s",markeredgecolor="r")
     plt.ylabel("Pegel in dB")
     plt.xlabel("Frequenz in Hz")
-    #plt.title("Predicted frequency response")
+    plt.title("Predicted frequency response")
     plt.xticks([10, 30, 100, 1000, 3000, 10000])
     plt.yticks(np.arange(-15,20,5))
     plt.grid(which="both", linestyle="--", color="grey")

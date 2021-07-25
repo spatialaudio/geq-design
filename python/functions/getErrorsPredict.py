@@ -1,5 +1,5 @@
 """
-Function for creating the error of prediced saved output
+Function for creating the error of predicted and saved output
 
     Parameters
     ----------
@@ -15,7 +15,6 @@ Function for creating the error of prediced saved output
 import math
 import numpy as np
 
-from initGEQ import initGEQ
 from pareq import pareq
 from getErrors import getErrors
 

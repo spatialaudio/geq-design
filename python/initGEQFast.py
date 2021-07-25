@@ -28,9 +28,9 @@ Function for initializing the graphic Equalizer
 
 import numpy as np
 
-from pareq import pareq
-from pareqVectorized import pareqVectorized
-from interactionMatrix import interactionMatrix
+from functions.pareq import pareq
+from functions.pareqVectorized import pareqVectorized
+from functions.interactionMatrix import interactionMatrix
 
 def initGEQFast(G_db,wg,wc,c,bw,leak,fs,fc2,fc1):
     
@@ -56,11 +56,11 @@ def initGEQFast(G_db,wg,wc,c,bw,leak,fs,fc2,fc1):
     numsopt = np.zeros((3,31))
     densopt = np.zeros((3,31))
     
-    for k in range(31):
-        [num,den] = pareq(G2opt[k],G2wopt[k],wg[k],bw[k])
-        numsopt[:,k] = num
-        densopt[:,k] = den
+    # for k in range(31):
+    #     [num,den] = pareq(G2opt[k],G2wopt[k],wg[k],bw[k])
+    #     numsopt[:,k] = num
+    #     densopt[:,k] = den
     
-    #numsopt, densopt = pareqVectorized(G2opt.reshape(31),G2wopt.reshape(31),wg,bw)
+    numsopt, densopt = pareqVectorized(G2opt.reshape(31),G2wopt.reshape(31),wg,bw)
    
     return numsopt,densopt,fs,fc2,G_db2,G2opt_db,fc1,bw
