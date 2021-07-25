@@ -5,5 +5,5 @@ This repository has Python scripts needed to run a optimized graphic equalizer (
 
 ## Run the example
 
-To run the OGEQ, run the file 
-  return shell_exec("echo $input | $markdown_script");
+To run the OGEQ, run the file `thirdOctaveGEQ.py`. To run the NGEQ, run the file `plotGEQPredictionAndError.py`. 
+
