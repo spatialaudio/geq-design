@@ -1,2 +1,7 @@
 # geq-design
-collection of design methods for graphical equalizers
+This repository has Python scripts needed to run a optimized graphic equalizer (OGEQ) and a neurally controlled graphic equalizer (NGEQ).
+
+## Run the example
+
+To run the OGEQ, run the file `thirdOctaveGEQ.py`. To run the NGEQ, run the file `plotGEQPredictionAndError.py`. 
+If you want to validate a trained tensorflow sequential model, run the file `validate.py`. 
